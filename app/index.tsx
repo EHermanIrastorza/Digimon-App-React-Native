@@ -1,4 +1,5 @@
-import Digimons from "@/components/digimons";
+import AllDigimonsTest from "@/components/alldigimonsTest";
+import Digimons from "@/components/Viejos-actualizar/digimons";
 import Landing from "@/components/landing";
 import { Text, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -14,8 +15,9 @@ export default function Index() {
         }}
       >
         <Text>App de digimon.</Text>
-        {/* <Digimons/> */}
+
         <Landing />
+
       </View>
     </SafeAreaProvider>
   );
