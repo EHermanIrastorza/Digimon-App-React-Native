@@ -1,7 +1,8 @@
 import { IdigimonNew } from "@/interfaces/DigimonInterface2";
 import { bringAllDigimons } from "@/lib/NewFetchDigi";
+import { Link } from "expo-router";
 import { useEffect, useState } from "react";
-import { FlatList, Image, Text, View } from "react-native";
+import { FlatList, Image, Pressable, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const digimonChampionLogo = require("@/assets/images/DigiImagen/greymon-champions.png")
@@ -36,14 +37,18 @@ export default function NewChampionsFilterCards() {
                 data={paginateData}
                 keyExtractor={(item) => item.name}
                 renderItem={({ item }) => (
-                
+
                     <View  >
-                        <Image source={{ uri: item.img }} style={{ height: 100, width: 100 }}/>
-                <View>
-                    <Text>
-                     {item.name}
-                    </Text>
-                </View>
+                        <Link asChild href={`/name/${item.name}`}>
+                            <Pressable>
+                                <Image source={{ uri: item.img }} style={{ height: 100, width: 100 }} />
+                            </Pressable>
+                        </Link>
+                        <View>
+                            <Text>
+                                {item.name}
+                            </Text>
+                        </View>
                     </View>
                 )}
             >

@@ -16,3 +16,19 @@ export async function bringAllDigimons(): Promise<IdigimonNew[]> {
   }
   return []; 
 }
+
+export async function digimonNamesId(name: string): Promise<IdigimonNew | null> {
+  try {
+    const response = await fetch(`${NEWDIGIMON_API_URL}/name/${name}`); 
+
+    if (!response.ok) {
+      throw new Error("Algo falló en la fetch: " + response.statusText);
+    }
+
+    const data = await response.json();
+    return data[0]; 
+  } catch (error) {
+    console.error(`Error al traer el Digimon con nombre ${name}:`, error);
+    return null; 
+  }
+}

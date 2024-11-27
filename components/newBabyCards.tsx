@@ -1,7 +1,8 @@
 import { IdigimonNew } from "@/interfaces/DigimonInterface2";
 import { bringAllDigimons } from "@/lib/NewFetchDigi";
+import { Link } from "expo-router";
 import { useEffect, useState } from "react";
-import { FlatList, Image, Text, View } from "react-native";
+import { FlatList, Image, Pressable, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function NewBabyFilterCards() {
@@ -34,7 +35,13 @@ export default function NewBabyFilterCards() {
                 renderItem={({ item }) => (
 
                     <View  >
-                        <Image source={{ uri: item.img }} style={{ height: 100, width: 100 }} />
+                        <Link asChild href={`/name/${item.name}`}>
+                            <Pressable>
+
+                                <Image source={{ uri: item.img }} style={{ height: 100, width: 100 }} />
+                       
+                            </Pressable>
+                        </Link>
                         <View>
                             <Text>
                                 {item.name}

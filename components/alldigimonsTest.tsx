@@ -3,6 +3,7 @@ import { View, Text, Image, FlatList, StyleSheet, Pressable } from 'react-native
 import { IdigimonNew } from "@/interfaces/DigimonInterface2";
 import { bringAllDigimons } from "@/lib/NewFetchDigi";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Link } from 'expo-router';
 
 
 const AllDigimonsTest = () => {
@@ -32,19 +33,28 @@ const AllDigimonsTest = () => {
     const totalPages = Math.ceil(digimons.length / itemsPerPage);
 
     return (
+
+
+
         <View style={{ paddingBottom: inset.bottom, paddingTop: inset.top }}>
+
             <Text >Digimon List</Text>
             <FlatList
                 data={paginatedData}
                 keyExtractor={(item) => item.name}
                 renderItem={({ item }) => (
-                    <View >
-                        <Image source={{ uri: item.img }} style={{ width: 40, height: 50 }} />
-                        <View>
-                            <Text >{item.name}</Text>
-                            <Text >{item.level}</Text>
-                        </View>
-                    </View>
+                    <Link asChild href={`/name/${item.name}`}>
+                        <Pressable>
+                            <View >
+
+                                <Image source={{ uri: item.img }} style={{ width: 40, height: 50 }} />
+                                <View>
+                                    <Text >{item.name}</Text>
+                                    <Text >{item.level}</Text>
+                                </View>
+                            </View>
+                        </Pressable>
+                    </Link>
                 )}
             />
             <View className='flex flex-row items-centerm-4 p-5'>
@@ -68,6 +78,7 @@ const AllDigimonsTest = () => {
                 </Pressable>
             </View>
         </View>
+
     );
 };
 
